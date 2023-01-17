@@ -1,0 +1,29 @@
+[build]
+publish = "public"
+command = "node getGithubData && npm run build"
+
+[[plugins]]
+package = "netlify-plugin-cecil-cache"
+
+  [plugins.inputs]
+  cacheDir = ".cache"
+  debug = true
+
+[[redirects]]
+from = "/css/*"
+to = "/css/:spat"
+status = 200
+
+[[redirects]]
+from = "/:pageNr(\\d+)/:searchTerms?"
+to = "/.netlify/functions/serverless"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "serverless"
+
+[[redirects]]
+from = "/:pageNr(\\d+)/"
+to = "/.netlify/functions/serverless"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "serverless"

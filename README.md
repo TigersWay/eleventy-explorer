@@ -1,0 +1,1 @@
+# eleventy-explorer  ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/tigersway/eleventy-explorer?style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/tigersway/eleventy-explorer?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/tigersway/eleventy-explorer?style=flat-square)

@@ -1,0 +1,21 @@
+# Windows & helpers, IDE & Personal preferences
+desktop.ini
+folder.ico
+.keep/
+
+# Dependency files & directories (p/npm)
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# Project's specific file(s)
+site/_data/*
+public/
+.env*
+.cache/
+
+.netlify/
+netlify/functions/serverless/**
+!netlify/functions/serverless/index.js
+
+!.gitkeep

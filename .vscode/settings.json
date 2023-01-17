@@ -1,0 +1,18 @@
+{
+  "markdownlint.config": {
+    "MD001": false, // Heading levels should only increment by one level at a time.
+    "MD033": false, // Inline HTML
+    "MD041": false, // First line in a file should be a top-level heading
+  },
+  "cSpell.words": [
+    "alpinejs",
+    "brotli",
+    "colorette",
+    "dayjs",
+    "eleventy",
+    "netlify",
+    "noopener",
+    "spdx"
+  ],
+  "npm.packageManager": "npm"
+}

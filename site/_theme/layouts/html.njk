@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- {{ pkg.name }} v{{ pkg.version }} | {{ pkg.license }} | {{ pkg.author | safe }} -->
+<html lang="en"
+  x-data="{ darkMode: localStorage.getItem('darkMode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')}"
+  x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+  :class="{'dark': darkMode === 'dark'}"
+  >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ (title + ' | ' if title) | safe }}{{ site.title }} v{{ pkg.version }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+{% block SEO %}{% endblock %}
+  <link rel="shortcut icon" href="/images/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/css/styles.min.css">
+</head>
+<body>
+
+{{ content | safe }}
+
+  {% if not isProduction %}{% include "blocks/dev.njk" %}{% endif %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.5/cdn.min.js" integrity="sha512-y22y4rJ9d7NGoRLII5LVwUv0BfQKf6MpATy5ebVu/fbHdtJCxBpZRHZMHJv8VYl8scWjuwZcMPzwYk4sEoyL4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

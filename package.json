@@ -1,0 +1,52 @@
+{
+  "name": "eleventy-explorer",
+  "description": "Eleventy explorer of all related Github projects",
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "github",
+    "graphql",
+    "tailwindcss",
+    "alpinejs"
+  ],
+  "version": "1.0.0-alpha.1",
+  "license": "MIT",
+  "author": "Ben Michaud <ben@tigersway.net>",
+  "scripts": {
+    "start": "NODE_ENV=development concurrently -c green,cyan npm:dev:* --kill-others",
+    "prestart": "npm run clean",
+    "dev:11ty": "eleventy --serve",
+    "dev:css": "tailwind --input ./site/_theme/css/styles.css --output ./public/css/styles.min.css --postcss --watch",
+    "build": "NODE_ENV=production concurrently -c green,cyan npm:build:* --kill-others-on-fail",
+    "prebuild": "npm run clean",
+    "build:11ty": "eleventy",
+    "build:css": "tailwind --input ./site/_theme/css/styles.css --output ./public/css/styles.min.css --postcss --minify",
+    "prod-preview": "npx http-server public -o --gzip --brotli",
+    "clean": "rm -rf ./public",
+    "data": "node getGithubData"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0-canary.31",
+    "@11ty/eleventy-fetch": "^3.0.0",
+    "@octokit/core": "^4.1.0",
+    "@octokit/plugin-paginate-graphql": "^2.0.1",
+    "autoprefixer": "^10.4.13",
+    "colorette": "^2.0.19",
+    "concurrently": "^7.6.0",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "fast-glob": "^3.2.12",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-link-attributes": "^4.0.1",
+    "p-all": "^3.0.0",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "string-kit": "^0.17.7",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^4.5.14",
+    "@netlify/functions": "^1.4.0"
+  }
+}

@@ -1,0 +1,12 @@
+  <div id="dev-tools" class="fixed flex items-center gap-2 px-2 py-1 font-mono text-xs text-white bg-green-700 rounded bottom-4 right-4">
+    <div id="infos"></div>
+    <script>
+    function getInfos() {
+      const breakpoints = [{name: '2XL', minWidth: 1536}, {name: 'XL', minWidth: 1280}, {name: 'LG', minWidth: 1024}, {name: 'MD', minWidth: 768}, {name: 'SM', minWidth: 640}, {name: 'none', minWidth:0}];
+      document.getElementById('infos').innerHTML = `${breakpoints[breakpoints.findIndex(e => window.innerWidth >= e.minWidth)].name}:${window.innerWidth}x${window.innerHeight}`;
+    }
+
+    window.addEventListener("resize", () => getInfos(), false);
+    getInfos();
+    </script>
+  </div>

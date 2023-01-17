@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ (title + ' | ' if title) | safe }}{{ site.title }} v{{ pkg.version }}</title>
   <meta name="description" content="{{ description or site.description }}">
+  <meta name="generator" content="{{ eleventy.generator }}" built="{{ build.time | dateISO }}">
 {% block SEO %}{% endblock %}
   <link rel="shortcut icon" href="/images/favicon-32x32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">

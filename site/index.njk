@@ -98,7 +98,7 @@ searchTerms: ""
         </div>
         <hr>
         <div class="flex justify-between gap-4 py-1 pt-2">
-          <div>Pushed: {{ repo.pushedAt | dateRelative }}</div>
+          <div>Pushed: <span class="timeago" datetime="{{ repo.pushedAt }}"></span></div>
           <div class="flex items-center gap-1">
             <div class="lang-color" style="background-color:{{ repo.languages[0].color }}">&nbsp;</div>{{ repo.languages[0].name }}
           </div>
@@ -128,8 +128,8 @@ searchTerms: ""
   </section>
 
   <footer class="container p-2 mx-auto bg-white border shadow max-w-7xl dark:bg-slate-800 border-slate-300 dark:border-slate-700">
-    <div class="flex items-center justify-between">
-      <span>{{ repos.length }} repos</span>
-      <span class="italic">Github data collected on: {{ github.cachedAt | dateFormat }} ({{ github.cachedAt | dateRelative }})</span>
+    <div class="flex flex-wrap items-center justify-between">
+      <span>Filtered repos: {{ repos.length }}</span>
+      <div class="italic">Github data collected on: {{ github.cachedAt | dateFormat }} (<span class="timeago" datetime="{{ github.cachedAt }}"></span>)</div>
     </div>
   </footer>

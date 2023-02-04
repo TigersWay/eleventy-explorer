@@ -10,9 +10,11 @@
     "colorette",
     "dayjs",
     "eleventy",
+    "esbuild",
     "netlify",
     "noopener",
     "spdx"
   ],
-  "npm.packageManager": "npm"
+  "npm.packageManager": "npm",
+  "npm.exclude": "**/netlify/**",
 }

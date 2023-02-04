@@ -70,11 +70,20 @@ const getAllRepos = async () => {
 
   // @octokit won't return more than 1000 objects, we need to split our request
   let repos = await pAll([
-    () => getRepos('topic:eleventy stars:>0'),
-    () => getRepos('topic:eleventy stars:<1'),
-    () => getRepos('topic:11ty -topic:eleventy')
+    () => getRepos('topic:eleventy stars:>0 sort:updated'),
+    () => getRepos('topic:eleventy stars:<1 sort:updated'),
+    () => getRepos('topic:11ty -topic:eleventy sort:updated')
   ], { concurrency: 1 }) // It seems impossible to run them simultaneously on Netlify! The famous "second rate limit".
     .then(values => values.flat());
+
+  // Duplicates: it seems github GraphQL gives back increasing number of duplicate
+  // A sort option on the query seems to have solved that problem.
+  const lookup = repos.reduce((a, e) => {
+    a[e.nameWithOwner] = ++a[e.nameWithOwner] || 0;
+    return a;
+  }, {});
+  const duplicates = repos.filter(e => lookup[e.nameWithOwner]);
+  if (duplicates) console.log(red(`--- ${duplicates.length / 2} duplicates.`));
 
   // And now: cleaning, flattening & sorting all these repositories
   repos = [...new Map(repos.map(repo => [repo.nameWithOwner, repo])).values()];
@@ -88,7 +97,7 @@ const getAllRepos = async () => {
     // Search
     repo.search = repo.topics.join(' ') + ' ' + repo.description?.toLowerCase();
   });
-  // Default sorting: stargazerCount DESC + pushedAt DESC
+  // Back to default sorting: stargazerCount DESC + pushedAt DESC
   repos.sort((a, b) => (b.stargazerCount - a.stargazerCount || -a.pushedAt.localeCompare(b.pushedAt)));
 
   assets.save(repos, 'json');
@@ -100,6 +109,8 @@ const getAllRepos = async () => {
 
   console.log(green('--- Get Eleventy related repositories'));
   const { repos, cachedAt } = await getAllRepos();
+  console.log(`--- ${repos.length} repos.`);
+
   await writeFile('./site/_data/repos.json', JSON.stringify(repos, null, 2));
   await writeFile('./site/_data/github.json', JSON.stringify({ cachedAt }, null, 2)); // Keep fetch time
 

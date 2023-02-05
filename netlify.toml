@@ -15,6 +15,11 @@ to = "/css/:spat"
 status = 200
 
 [[redirects]]
+from = "/js/*"
+to = "/js/:spat"
+status = 200
+
+[[redirects]]
 from = "/:pageNr(\\d+)/:searchTerms?"
 to = "/.netlify/functions/serverless"
 status = 200

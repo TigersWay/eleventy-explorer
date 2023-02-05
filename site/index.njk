@@ -3,8 +3,6 @@ layout: "html.njk"
 permalink:
   build: "/"
   serverless: "/:pageNr(\\d+)/:searchTerms?"
-#  search: "/search/:pageNr/:searchString/"
-#  repos: "/list/:pageNr/"
 currentPage: 1
 reposPerPage: 30
 searchTerms: ""
@@ -18,47 +16,50 @@ searchTerms: ""
     x-init=" search = '{{ searchTerms }}'.split('+').join(' ')"
     class="container p-2 mx-auto bg-white border shadow max-w-7xl dark:bg-slate-800 border-slate-300 dark:border-slate-700"
     >
-    <div class="flex items-center justify-between h-8">
-      <h1 class="text-lg font-bold">{{ site.title }}</h1>
-      <div class="flex items-stretch justify-end h-full gap-2">
+    <div class="flex gap-2 min-h-[32px]">
+      <h1 class="flex items-center flex-grow gap-1 text-lg font-bold">
+        <svg class="" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><path d="m11 18-2-1-6 3V7l6-3 6 3 6-3v10M9 4v13m6-10v5"/><path d="M14 17.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0m4.5 2L21 22"/></svg>
+        {{ site.title }}
+      </h1>
+      <div class="items-center hidden h-full gap-1 sm:flex">
         <div class="relative inline-block border rounded bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700">
-          <svg class="absolute w-4 h-4 left-2 top-2 " viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15" /></svg>
+          <svg class="absolute w-4 h-4 left-2 top-2 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15" /></svg>
           <input type="search" placeholder="Search" class="h-full px-2 py-1 pl-8 leading-normal bg-transparent rounded"
             x-model="search"
             @keydown.enter="window.location.href = '/1/' + search.trim().toLowerCase().split(' ').join('+')"
             >
         </div>
-        <button class="h-full px-2 py-1 border rounded border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600">
-          <svg @click="darkMode = 'light'" class="hidden w-5 h-5 dark:inline" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><title>Turn to `Light`</title><path d="M14.8 14.8a4 4 0 1 0-5.6-5.6 4 4 0 0 0 5.6 5.6zm-8.5 2.9L5 19M6.3 6.3 5 5m12.7 1.3L19 5m-1.3 12.7L19 19M4 12H2m10-8V2m8 10h2m-10 8v2"/></svg>
-          <svg @click="darkMode = 'dark'" class="inline w-5 h-5 dark:hidden" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><title>Turn to `Dark`</title><path d="M12 3h.4a7.5 7.5 0 0 0 8 12.4A9 9 0 1 1 12 3z"/></svg>
-        </button>
+        <span class="italic" title="Filtered repos">= {{ repos.length }} repos</span>
       </div>
+      <button class="h-full px-2 py-1 bg-white border rounded sm:order-last dark:bg-slate-800 border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600">
+        <svg @click="darkMode = 'light'" class="hidden w-5 h-5 dark:inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><title>Turn to `Light`</title><path d="M14.8 14.8a4 4 0 1 0-5.6-5.6 4 4 0 0 0 5.6 5.6zm-8.5 2.9L5 19M6.3 6.3 5 5m12.7 1.3L19 5m-1.3 12.7L19 19M4 12H2m10-8V2m8 10h2m-10 8v2"/></svg>
+        <svg @click="darkMode = 'dark'" class="inline w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><title>Turn to `Dark`</title><path d="M12 3h.4a7.5 7.5 0 0 0 8 12.4A9 9 0 1 1 12 3z"/></svg>
+      </button>
+    </div>
+    <div class="flex items-center justify-end h-full gap-1 sm:hidden">
+      <div class="relative inline-block border rounded bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700">
+        <svg class="absolute w-4 h-4 left-2 top-2 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15" /></svg>
+        <input type="search" placeholder="Search" class="h-full px-2 py-1 pl-8 leading-normal bg-transparent rounded"
+          x-model="search"
+          @keydown.enter="window.location.href = '/1/' + search.trim().toLowerCase().split(' ').join('+')"
+          >
+      </div>
+      <span class="italic" title="Filtered repos">= {{ repos.length }} repos</span>
     </div>
   </header>
   
   {% if eleventy.serverless.path.pageNr %}{% set currentPage = +eleventy.serverless.path.pageNr %}{% endif %}
   {% set pager = repos | paginate(currentPage, reposPerPage, 1) %}
-  {# {% if not isProduction %}
-  <div class="container px-2 mx-auto my-4 max-w-7xl">
-    {{ {
-      page:page,
-      eleventy:eleventy,
-      currentPage: currentPage,
-      searchTerms: searchTerms,
-      pager: pager
-      } | debug(4) | safe }}
-  </div>
-  {% endif %} #}
   <section class="container px-2 mx-auto my-4 max-w-7xl">
     <svg class="hidden"><defs/>
-      <symbol id="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M12 17.8 5.8 21 7 14.1 2 9.3l7-1L12 2l3 6.3 7 1-5 4.8 1.2 6.9z"/></symbol>
-      <symbol id="fork" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="12" cy="18" r="2"/><circle cx="7" cy="6" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V8m-5 4v4"/></symbol>
+      <symbol id="star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 17.8 5.8 21 7 14.1 2 9.3l7-1L12 2l3 6.3 7 1-5 4.8 1.2 6.9z"/></symbol>
+      <symbol id="fork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="18" r="2"/><circle cx="7" cy="6" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V8m-5 4v4"/></symbol>
     </svg>
     
     <div class="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4">
       {% for repo in (repos | slice((currentPage-1) * reposPerPage, currentPage * reposPerPage)) %}
       <div class="card">
-        <div class="py-1 pb-2">
+        <div class="py-2">
           <h3 class="mb-2 text-base font-semibold text-black dark:text-white">
             <img class="inline mr-1 rounded" src="{{ repo.owner.avatarUrl }}&s=40" alt="{{ repo.owner.login }}" width="20" height="20" loading="lazy">
             <a href="{{ repo.owner.url }}" target="_blank">{{ repo.owner.login }}</a>
@@ -97,8 +98,8 @@ searchTerms: ""
           </ul>
         </div>
         <hr>
-        <div class="flex justify-between gap-4 py-1 pt-2">
-          <div>Pushed: <span class="timeago" datetime="{{ repo.pushedAt }}"></span></div>
+        <div class="flex justify-between gap-4 py-2">
+          <div>Pushed: <span datetime="{{ repo.pushedAt }}"></span></div>
           <div class="flex items-center gap-1">
             <div class="lang-color" style="background-color:{{ repo.languages[0].color }}">&nbsp;</div>{{ repo.languages[0].name }}
           </div>
@@ -109,11 +110,11 @@ searchTerms: ""
 
     <div class="pt-4 mx-auto pager">
       {% if pager.prev %}
-      <a class="!px-1" href="/{{ pager.prev }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m15 6-6 6 6 6"/></svg></a>
+      <a class="!px-1" href="/{{ pager.prev }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m15 6-6 6 6 6"/></svg></a>
       {% endif %}
       {% for item in pager.items %}
       {% if item=='…' %}
-      <span><svg class="" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span>
+      <span><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span>
       {% elif pager.current==item %}
       <a class="active">{{ item }}</a>
       {% else %}
@@ -121,15 +122,18 @@ searchTerms: ""
       {% endif %}
       {% endfor %}
       {% if pager.next %}
-      <a class="!px-1" href="/{{ pager.next }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="!px-1" href="/{{ pager.next }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></a>
       {% endif %}
     </div>
 
   </section>
 
   <footer class="container p-2 mx-auto bg-white border shadow max-w-7xl dark:bg-slate-800 border-slate-300 dark:border-slate-700">
-    <div class="flex flex-wrap items-center justify-between">
-      <span>Filtered repos: {{ repos.length }}</span>
-      <div class="italic">Github data collected on: {{ github.cachedAt | dateFormat }} (<span class="timeago" datetime="{{ github.cachedAt }}"></span>)</div>
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <a class="flex items-center gap-1" href="https://github.com/tigersway/eleventy-explorer">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        {{ pkg.name }}
+      </a>
+      <div class="flex-grow italic text-right">Github data collected on: {{ github.cachedAt | dateFormat }} (<span datetime="{{ github.cachedAt }}"></span>)</div>
     </div>
   </footer>

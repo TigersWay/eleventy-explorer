@@ -9,7 +9,7 @@
 }
 
 @layer components {
-  .card {@apply flex flex-col px-2 bg-white border shadow dark:bg-slate-800 border-slate-300 dark:border-slate-700 divide-slate-300 dark:divide-slate-700;}
+  .card {@apply flex flex-col px-3 bg-white border shadow dark:bg-slate-800 border-slate-300 dark:border-slate-700 divide-slate-300 dark:divide-slate-700;}
   .card svg {@apply inline-block w-4 h-4 mr-1 -mt-1;}
   .card .description a {@apply underline underline-offset-2;}
   .card .topic {@apply px-1 border border-blue-400 rounded bg-blue-300/20 dark:border-blue-700;}

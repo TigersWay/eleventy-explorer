@@ -19,7 +19,7 @@
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwind --input ./site/_theme/css/styles.css --output ./public/css/styles.min.css --postcss --watch",
     "dev:js": "esbuild js/scripts.min=site/_theme/js/scripts.js --outdir=public --bundle --watch",
-    "build": "NODE_ENV=production concurrently -c green,cyan,yellow npm:build:* --kill-others-on-fail",
+    "build": "concurrently -c green,cyan,yellow npm:build:* --kill-others-on-fail",
     "prebuild": "npm run clean",
     "build:11ty": "eleventy",
     "build:css": "tailwind --input ./site/_theme/css/styles.css --output ./public/css/styles.min.css --postcss --minify",

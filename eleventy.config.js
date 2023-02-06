@@ -55,7 +55,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
 
 
-  eleventyConfig.addGlobalData('isProduction', process.env.NODE_ENV === 'production');
+  eleventyConfig.addGlobalData('isProduction', process.env.NODE_ENV !== 'development');
 
 
   return {

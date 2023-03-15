@@ -1,4 +1,10 @@
 {
+  "npm.packageManager": "npm",
+  "npm.scriptExplorerExclude": [
+    "^pre",
+    ":"
+  ],
+  "npm.exclude": "**/netlify/**",
   "markdownlint.config": {
     "MD001": false, // Heading levels should only increment by one level at a time.
     "MD033": false, // Inline HTML
@@ -14,7 +20,5 @@
     "netlify",
     "noopener",
     "spdx"
-  ],
-  "npm.packageManager": "npm",
-  "npm.exclude": "**/netlify/**",
+  ]
 }

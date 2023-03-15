@@ -1,0 +1,15 @@
+name: Weekly Netlify Rebuild
+
+on:
+  schedule:
+    # runs every Monday morning at 0:00 UTC
+    - cron: '0 0 * * MON'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: trigger netlify build
+        run: |
+          curl -X POST -d {} https://api.netlify.com/build_hooks/63e0ba50625a8b24fafd107a

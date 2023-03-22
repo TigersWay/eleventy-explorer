@@ -10,24 +10,14 @@ package = "netlify-plugin-cecil-cache"
   debug = true
 
 [[redirects]]
-from = "/css/*"
-to = "/css/:spat"
-status = 200
-
-[[redirects]]
-from = "/js/*"
-to = "/js/:spat"
-status = 200
-
-[[redirects]]
-from = "/:pageNr(\\d+)/:searchTerms?"
+from = "/repos/:pageNr/:searchTerms"
 to = "/.netlify/functions/serverless"
 status = 200
 force = true
 _generated_by_eleventy_serverless = "serverless"
 
 [[redirects]]
-from = "/:pageNr(\\d+)/"
+from = "/repos/:pageNr"
 to = "/.netlify/functions/serverless"
 status = 200
 force = true

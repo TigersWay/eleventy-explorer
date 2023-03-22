@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const
-  { EleventyRenderPlugin, EleventyServerlessBundlerPlugin } = require('@11ty/eleventy'),
+  { EleventyServerlessBundlerPlugin } = require('@11ty/eleventy'),
   yaml = require('js-yaml'),
   glob = require('fast-glob');
 

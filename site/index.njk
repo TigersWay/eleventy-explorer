@@ -2,11 +2,17 @@
 layout: "html.njk"
 permalink:
   build: "/"
-  serverless: "/:pageNr(\\d+)/:searchTerms?"
+  # serverless: "/repos/:pageNr(\\d+)/:searchTerms?"
+  serverless: 
+    - "/repos/:pageNr/:searchTerms"
+    - "/repos/:pageNr"
+
 currentPage: 1
 reposPerPage: 30
 searchTerms: ""
 ---
+  {{ eleventy.serverless | dump }}
+  
   {% if eleventy.serverless.path.searchTerms %}
     {% set searchTerms = eleventy.serverless.path.searchTerms %}
     {% set  repos = (repos | multipleSearch('search', searchTerms)) %}
@@ -26,7 +32,7 @@ searchTerms: ""
           <svg class="absolute w-4 h-4 left-2 top-2 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15" /></svg>
           <input type="search" placeholder="Search" class="h-full px-2 py-1 pl-8 leading-normal bg-transparent rounded"
             x-model="search"
-            @keydown.enter="window.location.href = '/1/' + search.trim().toLowerCase().split(' ').join('+')"
+            @keydown.enter="window.location.href = '/repos/1/' + search.trim().toLowerCase().split(' ').join('+')"
             >
         </div>
         <span class="italic" title="Filtered repos">= {{ repos.length }} repos</span>
@@ -110,7 +116,7 @@ searchTerms: ""
 
     <div class="pt-4 mx-auto pager">
       {% if pager.prev %}
-      <a class="!px-1" href="/{{ pager.prev }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m15 6-6 6 6 6"/></svg></a>
+      <a class="!px-1" href="/repos/{{ pager.prev }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m15 6-6 6 6 6"/></svg></a>
       {% endif %}
       {% for item in pager.items %}
       {% if item=='…' %}
@@ -118,11 +124,11 @@ searchTerms: ""
       {% elif pager.current==item %}
       <a class="active">{{ item }}</a>
       {% else %}
-      <a href="/{{ item }}/{{ searchTerms }}">{{ item }}</a>
+      <a href="/repos/{{ item }}/{{ searchTerms }}">{{ item }}</a>
       {% endif %}
       {% endfor %}
       {% if pager.next %}
-      <a class="!px-1" href="/{{ pager.next }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="!px-1" href="/repos/{{ pager.next }}/{{ searchTerms }}"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></a>
       {% endif %}
     </div>
 

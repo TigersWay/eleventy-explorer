@@ -3,3 +3,11 @@
 Dependencies:
 
 - ![@11ty/eleventy](https://img.shields.io/github/package-json/dependency-version/tigersway/eleventy-boilerplate/dev/@11ty/eleventy)
+
+## CHANGELOG
+
+- **v1.1.0**
+  - Fix: prefix(es)
+
+- **v1.0.0**
+  - First "official" version

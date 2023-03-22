@@ -2,7 +2,11 @@
 layout: "html.njk"
 permalink:
   build: "/"
-  serverless: "/repos/:pageNr(\\d+)/:searchTerms?"
+  # serverless: "/repos/:pageNr(\\d+)/:searchTerms?"
+  serverless: 
+    - "/repos/:pageNr/:searchTerms"
+    - "/repos/:pageNr"
+
 currentPage: 1
 reposPerPage: 30
 searchTerms: ""

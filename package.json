@@ -26,7 +26,8 @@
     "build:js": "esbuild js/scripts.min=site/_theme/js/scripts.js --outdir=public --bundle --minify",
     "prod-preview": "npx http-server public -o --gzip --brotli",
     "clean": "rm -rf ./public",
-    "data": "node getGithubData"
+    "data": "node getGithubData",
+    "netlify": "netlify dev"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0",
@@ -44,6 +45,7 @@
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
     "markdown-it-link-attributes": "^4.0.1",
+    "p-all": "^3.0.0",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "string-kit": "^0.17.7",

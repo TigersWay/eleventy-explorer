@@ -11,8 +11,6 @@ currentPage: 1
 reposPerPage: 30
 searchTerms: ""
 ---
-  {{ eleventy.serverless | dump }}
-  
   {% if eleventy.serverless.path.searchTerms %}
     {% set searchTerms = eleventy.serverless.path.searchTerms %}
     {% set  repos = (repos | multipleSearch('search', searchTerms)) %}

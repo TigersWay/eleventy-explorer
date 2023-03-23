@@ -95,7 +95,7 @@ const getAllRepos = async () => {
     if (repo.languages.totalCount > 12) console.log(red(`${repo.nameWithOwner} has ${repo.languages.totalCount} languages!`));
     repo.languages = repo.languages.nodes;
     // Search
-    repo.search = repo.topics.join(' ') + ' ' + repo.description?.toLowerCase();
+    repo.search = repo.owner.login.toLowerCase() + ' ' + repo.topics.join(' ') + ' ' + repo.description?.toLowerCase();
   });
   // Back to default sorting: stargazerCount DESC + pushedAt DESC
   repos.sort((a, b) => (b.stargazerCount - a.stargazerCount || -a.pushedAt.localeCompare(b.pushedAt)));

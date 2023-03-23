@@ -6,6 +6,9 @@ Dependencies:
 
 ## CHANGELOG
 
+- **v1.2.0**
+  - Add: `repo.owner.login` has been added to the searchable terms (`repo.topics`, `repo.description`);
+  
 - **v1.1.0**
   - Fix: prefix(es)
 

@@ -12,6 +12,7 @@ pnpm-lock.yaml
 site/_data/*
 public/
 .env*
+!.env.example
 .cache/
 
 .netlify/

@@ -30,30 +30,30 @@
     "netlify": "netlify dev"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-fetch": "^3.0.0",
-    "@octokit/core": "^4.1.0",
-    "@octokit/plugin-paginate-graphql": "^2.0.1",
-    "alpinejs": "^3.11.1",
-    "autoprefixer": "^10.4.13",
-    "colorette": "^2.0.19",
+    "@octokit/core": "^4.2.4",
+    "@octokit/plugin-paginate-graphql": "^2.0.3",
+    "alpinejs": "^3.15.8",
+    "autoprefixer": "^10.4.24",
+    "colorette": "^2.0.20",
     "concurrently": "^7.6.0",
-    "dayjs": "^1.11.7",
-    "dotenv": "^16.0.3",
-    "esbuild": "^0.17.5",
-    "fast-glob": "^3.2.12",
-    "js-yaml": "^4.1.0",
-    "markdown-it": "^13.0.1",
+    "dayjs": "^1.11.19",
+    "dotenv": "^16.6.1",
+    "esbuild": "^0.17.19",
+    "fast-glob": "^3.3.3",
+    "js-yaml": "^4.1.1",
+    "markdown-it": "^13.0.2",
     "markdown-it-link-attributes": "^4.0.1",
     "p-all": "^3.0.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.5.6",
     "postcss-import": "^15.1.0",
-    "string-kit": "^0.17.7",
-    "tailwindcss": "^3.2.4",
+    "string-kit": "^0.17.10",
+    "tailwindcss": "^3.4.19",
     "timeago.js": "^4.0.2"
   },
   "dependencies": {
-    "@fontsource/inter": "^4.5.14",
-    "@netlify/functions": "^1.4.0"
+    "@fontsource/inter": "^4.5.15",
+    "@netlify/functions": "^1.6.0"
   }
 }

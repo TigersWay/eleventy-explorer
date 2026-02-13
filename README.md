@@ -6,6 +6,10 @@ Dependencies:
 
 ## CHANGELOG
 
+- **v1.3.0**
+  - Netlify features have been abandonned by Eleventy, but some ask me to keep this running!
+  - Add github topic `eleventy-plugin` without `eleventy` and `11ty`. Please people, set your topics :-)
+  
 - **v1.2.0**
   - Add: `repo.owner.login` has been added to the searchable terms (`repo.topics`, `repo.description`);
   

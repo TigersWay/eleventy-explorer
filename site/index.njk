@@ -22,8 +22,10 @@ searchTerms: ""
     >
     <div class="flex gap-2 min-h-[32px]">
       <h1 class="flex items-center flex-grow gap-1 text-lg font-bold">
-        <svg class="" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><path d="m11 18-2-1-6 3V7l6-3 6 3 6-3v10M9 4v13m6-10v5"/><path d="M14 17.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0m4.5 2L21 22"/></svg>
-        {{ site.title }}
+        <a href="/" class="flex items-center gap-1">
+          <svg class="" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><path d="m11 18-2-1-6 3V7l6-3 6 3 6-3v10M9 4v13m6-10v5"/><path d="M14 17.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0m4.5 2L21 22"/></svg>
+          {{ site.title }}
+        </a>
       </h1>
       <div class="items-center hidden h-full gap-1 sm:flex">
         <div class="relative inline-block border rounded bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700">
@@ -45,7 +47,7 @@ searchTerms: ""
         <svg class="absolute w-4 h-4 left-2 top-2 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15" /></svg>
         <input type="search" placeholder="Search" class="h-full px-2 py-1 pl-8 leading-normal bg-transparent rounded"
           x-model="search"
-          @keydown.enter="window.location.href = '/1/' + search.trim().toLowerCase().split(' ').join('+')"
+          @keydown.enter="window.location.href = '/repos/1/' + search.trim().toLowerCase().split(' ').join('+')"
           >
       </div>
       <span class="italic" title="Filtered repos">= {{ repos.length }} repos</span>

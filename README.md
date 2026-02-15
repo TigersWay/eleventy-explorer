@@ -2,12 +2,15 @@
 
 Dependencies:
 
-- ![@11ty/eleventy](https://img.shields.io/github/package-json/dependency-version/tigersway/eleventy-boilerplate/dev/@11ty/eleventy)
+- ![@11ty/eleventy](https://img.shields.io/github/package-json/dependency-version/tigersway/eleventy-explorer/dev/@11ty/eleventy)
 
 ## CHANGELOG
 
+- **v1.3.1**
+  - Should now be working on mobile too! [#3](https://github.com/TigersWay/eleventy-explorer/issues/3)
+
 - **v1.3.0**
-  - Netlify features have been abandonned by Eleventy, but some ask me to keep this running!
+  - Netlify features have been abandoned by Eleventy, but some ask me to keep this running!
   - Add github topic `eleventy-plugin` without `eleventy` and `11ty`. Please people, set your topics :-)
   
 - **v1.2.0**
